@@ -1,0 +1,17 @@
+---
+---
+
+<div class="flex items-center justify-center mt-40">
+    <a href="#" class="m-0 p-0" id="scrollToTop">
+        <i class="fa-solid fa-caret-up text-6xl hover:scale-105 hover:text-gray-950 transition-all"></i>
+    </a>
+</div>
+
+<script>
+    document.getElementById('scrollToTop')?.addEventListener('click', (e) => {
+      e.preventDefault(); // Evita el comportamiento por defecto del enlace
+      window.scrollTo({
+        top: 0,
+      });
+    });
+</script>
