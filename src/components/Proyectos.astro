@@ -1,50 +1,108 @@
 ---
-const TAGS = {
-    HTML: {
+import { preview } from "astro"
+import MainButton from '../components/Buttons/MainButton.astro';
+
+const Button_TAGS = [
+    {
         name: "HTML",
         icon: "fa-brands fa-html5",
-        color: "bg-red-500"
     },
-    CSS: {
+    {
         name: "CSS",
         icon: "fa-brands fa-css3-alt",
-        color: "bg-blue-500"
     },
-    JS: {
+    {
         name: "JS",
         icon: "fa-brands fa-js",
-        color: "bg-yellow-500"
     },
-    PYTHON: {
+    {
         name: "Python",
         icon: "fa-brands fa-python",
-        color: "bg-green-500"
     },
-    GIT: {
+    {
         name: "Git",
         icon: "fa-brands fa-git-alt",
-        color: "bg-gray-500"
     },
-    C: {
+    {
         name: "C",
         icon: "fa-sharp fa-solid fa-c",
-        color: "bg-gray-500"
-    }
-}
+    },
+    {
+        name: "Tailwind",
+        icon: "fa-brands fa-css3",
+    },
+]
 
 const PROJECTS = [
-
+    {
+        title: "ValoratGamesForTweet",
+        img: "../../public/projects/ValorantGamesForTweet.png",
+        tags: ["Python", "Twitter API"],
+        description: "Script para obtener los juegos de Valorant Competitivo y subirlos a Twitter de manera automática",
+        links: [
+            {
+                name: "Código",
+                url: "https://github.com/diego-dev018/ValorantGamesForTweet",
+            },
+            {
+                name: "Preview",
+                url: "https://x.com/InstapickV",
+            },
+        ],
+    },
+    {
+        title: "Automatic Vods For YouTube",
+        img: "../../public/projects/AutomaticVodsForYT.png",
+        tags: ["Python", "Twitch API", "Youtube API"],
+        description: "Script para obtener las vods de Twitch y subirlas a Youtube de manera automática",
+        links: [
+            {
+                name: "Código",
+                url: "https://github.com/diego-dev018/AutomaticTwitchVodsForYoutube",
+            },
+        ],
+    },
 ]
 
 ---
 <section class="mb-80 cursor-default" id="projects">
     <h2 class="text-4xl font-semibold"><i class="fa-solid fa-diagram-project mr-4"></i>Proyectos</h2>
-    <ul class="flex justify-around mt-4">
-        <li><button class="bg-gray-700 items-center pt-2 pb-1 pr-4 pl-4 rounded-xl text-white hover:shadow-black hover:shadow-sm hover:scale-110 hover:text-slate-900 hover:bg-slate-50 transition-all active:scale-100 active:text-yellow-500"><i class="fa-brands fa-html5 mr-2"></i>HTML</button></li>
-        <li><button class="bg-gray-700 items-center pt-2 pb-1 pr-4 pl-4 rounded-xl text-white hover:shadow-black hover:shadow-sm hover:scale-110 hover:text-slate-900 hover:bg-slate-50 transition-all active:scale-100 active:text-yellow-500"><i class="fa-brands fa-css3-alt mr-2"></i>CSS</button></li>
-        <li><button class="bg-gray-700 items-center pt-2 pb-1 pr-4 pl-4 rounded-xl text-white hover:shadow-black hover:shadow-sm hover:scale-110 hover:text-slate-900 hover:bg-slate-50 transition-all active:scale-100 active:text-yellow-500"><i class="fa-brands fa-js mr-2"></i>JS</button></li>
-        <li><button class="bg-gray-700 items-center pt-2 pb-1 pr-4 pl-4 rounded-xl text-white hover:shadow-black hover:shadow-sm hover:scale-110 hover:text-slate-900 hover:bg-slate-50 transition-all active:scale-100 active:text-yellow-500"><i class="fa-brands fa-python mr-2"></i>Python</button></li>
-        <li><button class="bg-gray-700 items-center pt-2 pb-1 pr-4 pl-4 rounded-xl text-white hover:shadow-black hover:shadow-sm hover:scale-110 hover:text-slate-900 hover:bg-slate-50 transition-all active:scale-100 active:text-yellow-500"><i class="fa-brands fa-git-alt mr-2"></i>Git</button></li>
-        <li><button class="bg-gray-700 items-center pt-2 pb-1 pr-4 pl-4 rounded-xl text-white hover:shadow-black hover:shadow-sm hover:scale-110 hover:text-slate-900 hover:bg-slate-50 transition-all active:scale-100 active:text-yellow-500"><i class="fa-sharp fa-solid fa-c mr-2"></i>C</button></li>
+    <ul class="flex justify-between mt-4 gap-1 md:gap-0">
+    {
+        Button_TAGS.map(tag => (
+        <li>
+            <button class="bg-gray-700 items-center pt-2 pb-1 pr-4 pl-4 rounded-xl text-white hover:scale-105 hover:text-slate-900 hover:bg-slate-50 transition-all active:scale-100 text-xl lg:text-2xl"><i class=`${tag.icon} mr-2`></i>{tag.name}</button>
+        </li>
+    ))}
+    </ul>
+        {
+            PROJECTS.map(project => (
+                <li class="grid grid-cols-5 list-none mt-4">
+                    <img src=`${project.img}` alt="" class="w-72 h-56 rounded-2xl bg-black col-span-2 hover:scale-105 transition-all duration-300 active:scale-150 z-10 active:z-20 cursor-pointer">
+                    <div class="flex flex-col justify-between col-span-3 pt-1 pb-2 ml-4 md:ml-2 lg:ml-0">
+                        <h3 class="text-3xl font-bold lg:text-4xl">{project.title}</h3>
+                        <div class="flex mt-1">
+                        {
+                            (project.tags).map(p_tag => (
+                            <h5 class="flex items-start opacity-80 hover:opacity-100 transition-opacity duration-300 mr-2 pl-3 pr-3 rounded-xl bg-slate-700 text-white overflow-clip w-fit h-8 lg:h-auto lg:items-center">{p_tag}</h5>
+                        ))
+                        }
+                        </div>
+                        <p class="mt-2 mb-2 text-lg lg:text-2xl md:text-xl">{project.description}</p>
+                        <div class="flex">
+                            {
+                                (project.links).map(link => (
+                                <div class="mr-4">
+                                    <MainButton link=`${link.url}`>
+                                        {link.name}
+                                    </MainButton>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </li>
+            ))
+        }
+    <ul>
     </ul>
 </section>

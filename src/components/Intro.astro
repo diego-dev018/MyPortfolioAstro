@@ -1,11 +1,19 @@
 ---
 import MainButton from "./Buttons/MainButton.astro"
+
+const DETAILS = [
+    "Estudiante de Ingeniería en Desarrollo de Software.",
+    "Programando desde los 16 años.",
+    "Apasionado por la Tecnología!",
+]
 ---
 <section class="flex flex-col items-center justify-center mt-80 mb-80 cursor-default" id="intro">
-    <h1 class="text-7xl font-bold mb-2"><span class="text-5xl font-semibold mr-8">¡Hola!</span>Soy DiegoDev</h1>
-    <p class="text-3xl p-0 opacity-80">Estudiante de Ingeniería en Desarrollo de Software.</p>
-    <p class="text-3xl p-0 opacity-80">Programando desde los 16 años.</p>
-    <p class="text-3xl p-0 opacity-80">Apasionado por la Tecnología!</p>
+    <h1 class="text-6xl font-bold mb-4 md:text-6xl lg:text-7xl"><span class="text-4xl font-semibold mr-4 lg:mr-6 lg:text-5xl lg:mb-2 md:mr-5">¡Hola!</span>Soy DiegoDev</h1>
+    {
+        DETAILS.map(detail => (
+        <p class="text-3xl p-0 opacity-80 text-center">{detail}</p>
+    ))
+    }
     <div class="mt-6">
         <MainButton link='https://www.linkedin.com/in/diego-ronaldo-sanchez-pichardo-803a1a317/'>
             <span>Linkedin</span>

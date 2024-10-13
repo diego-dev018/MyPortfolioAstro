@@ -1,0 +1,26 @@
+---
+const ALLSKILLS = [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Python",
+    "Git",
+    "C",
+    "Tailwind",
+    "Linux",
+    "Amazon Web Services",
+    "Docker",
+    ""
+]
+---
+
+<section class="opacity-75 animate-pulse mt-40 cursor-default">
+    <h4 class="flex text-3xl justify-center font-bold mb-1">Todas Mis Habilidades</h4>
+    <ul class="flex flex-col text-center justify-between md:flex-row">
+        {
+            ALLSKILLS.map((skill) => (
+                <li>{skill}</li>
+            ))
+        }
+    </ul>
+</section>
